@@ -3,6 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Archivos Andy/UNIVERSIDAD/4TO-SEMESTRE/PROGRAMACION MOVIL II/PROYECTO FINAL/proyecto/Creamy/app/src/main/res/drawable/ic_letracreamy.xml" value="0.1" />
+        <entry key="..\:/Archivos Andy/UNIVERSIDAD/4TO-SEMESTRE/PROGRAMACION MOVIL II/PROYECTO FINAL/proyecto/Creamy/app/src/main/res/drawable/ic_letraeslogancreamys.xml" value="0.1" />
+        <entry key="..\:/Archivos Andy/UNIVERSIDAD/4TO-SEMESTRE/PROGRAMACION MOVIL II/PROYECTO FINAL/proyecto/Creamy/app/src/main/res/drawable/ic_letralogo.xml" value="0.1" />
+        <entry key="..\:/Archivos Andy/UNIVERSIDAD/4TO-SEMESTRE/PROGRAMACION MOVIL II/PROYECTO FINAL/proyecto/Creamy/app/src/main/res/layout/activity_about.xml" value="0.264" />
+        <entry key="..\:/Archivos Andy/UNIVERSIDAD/4TO-SEMESTRE/PROGRAMACION MOVIL II/PROYECTO FINAL/proyecto/Creamy/app/src/main/res/layout/fragment_maps.xml" value="0.264" />
         <entry key="..\:/ProgramacionMovil II/ProyectoFinal/Creamy/app/src/main/res/layout/activity_main.xml" value="0.13728470111448834" />
       </map>
     </option>
