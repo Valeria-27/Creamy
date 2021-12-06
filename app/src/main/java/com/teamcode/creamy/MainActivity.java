@@ -90,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
                 intent = new Intent(this, DevelopersInfo.class);
                 startActivity(intent);
                 return true;
+
             default:
                 return super.onOptionsItemSelected(item);
         }
