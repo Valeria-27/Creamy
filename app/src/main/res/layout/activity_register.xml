@@ -21,7 +21,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <EditText
-            android:id="@+id/inputEmail"
+            android:id="@+id/etEmailR"
             android:layout_width="347dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -31,8 +31,8 @@
             android:drawablePadding="10dp"
             android:ems="10"
             android:fontFamily="@font/poppins"
+            android:inputType="textEmailAddress"
             android:hint="Correo Electronico"
-            android:inputType="textPersonName"
             android:minHeight="48dp"
             android:paddingLeft="20dp"
             android:paddingTop="10dp"
@@ -42,7 +42,7 @@
             android:textColorHint="#000000" />
 
         <EditText
-            android:id="@+id/inputPassword"
+            android:id="@+id/etNombreRegister"
             android:layout_width="347dp"
             android:layout_height="wrap_content"
             android:background="@drawable/input_bg2"
@@ -50,7 +50,7 @@
             android:drawablePadding="10dp"
             android:ems="10"
             android:fontFamily="@font/poppins"
-            android:hint="Contraseña"
+            android:hint="Nombre"
             android:inputType="textPersonName"
             android:minHeight="48dp"
             android:paddingLeft="20dp"
@@ -61,7 +61,7 @@
             android:textColorHint="@color/black" />
 
         <EditText
-            android:id="@+id/inputPassword4"
+            android:id="@+id/etPasswordRegister"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
@@ -71,7 +71,7 @@
             android:ems="10"
             android:fontFamily="@font/poppins"
             android:hint="Contraseña"
-            android:inputType="textPersonName"
+            android:inputType="numberPassword"
             android:minHeight="48dp"
             android:paddingLeft="20dp"
             android:paddingTop="10dp"
@@ -81,7 +81,7 @@
             android:textColorHint="@color/black" />
 
         <EditText
-            android:id="@+id/inputPassword5"
+            android:id="@+id/etAddressRegister"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
@@ -101,7 +101,7 @@
             android:textColorHint="@color/black" />
 
         <Button
-            android:id="@+id/btnLogin"
+            android:id="@+id/btnRegister"
             android:layout_width="347dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
@@ -129,16 +129,17 @@
                 android:textColor="@color/black" />
 
             <TextView
-                android:id="@+id/textViewSignUp"
+                android:id="@+id/etLoginGo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
                 android:fontFamily="@font/poppins_semibold"
                 android:text="Inicia Sesion"
                 android:textColor="#2F817B"
                 android:textStyle="bold" />
 
         </LinearLayout>
+
+
 
     </LinearLayout>
 
