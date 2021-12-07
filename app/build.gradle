@@ -36,7 +36,10 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:29.0.0')
     implementation 'com.google.android.gms:play-services-maps:18.0.0'
     implementation 'com.google.firebase:firebase-database:20.0.2'
+<<<<<<< HEAD
     implementation 'com.google.firebase:firebase-auth'
+=======
+>>>>>>> 4b9264052a5e9a8d653d922c20a0cf40fa727ee7
     testImplementation 'junit:junit:4.13.2'
     implementation 'com.google.android.gms:play-services-auth:19.2.0'
 
