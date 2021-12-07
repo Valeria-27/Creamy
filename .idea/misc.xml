@@ -1,15 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DesignSurface">
-    <option name="filePathToZoomLevelMap">
-      <map>
-        <entry key="..\:/.Tareas/Universidad/4to Semestre/Programacion Movil 2/Proyecto final/Creamy/app/src/main/res/layout/activity_main.xml" value="0.3365036231884058" />
-        <entry key="..\:/.Tareas/Universidad/4to Semestre/Programacion Movil 2/Proyecto final/Creamy/app/src/main/res/layout/activity_splash_screen.xml" value="0.22" />
-        <entry key="..\:/.Tareas/Universidad/4to Semestre/Programacion Movil 2/Proyecto final/Creamy/app/src/main/res/layout/developers.xml" value="0.33" />
-        <entry key="..\:/ProgramacionMovil II/ProyectoFinal/Creamy/app/src/main/res/layout/activity_main.xml" value="0.13728470111448834" />
-      </map>
-    </option>
-  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
