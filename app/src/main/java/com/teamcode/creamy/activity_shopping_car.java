@@ -1,13 +1,24 @@
 package com.teamcode.creamy;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.teamcode.creamy.Models.IceCream;
 
 import java.lang.annotation.Documented;
@@ -21,6 +32,12 @@ public class activity_shopping_car extends AppCompatActivity {
     private Button btnPedido;
     private TextView tvTotalOrder;
     private ArrayList<IceCream> iceCreams;
+
+    FirebaseAuth myAuth;
+    private FirebaseDatabase firebaseDatabase;
+    FirebaseUser user;
+
+    DatabaseReference mDatabase;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,9 +46,14 @@ public class activity_shopping_car extends AppCompatActivity {
         btnPedido = findViewById(R.id.btnPedido);
         listView = (ListView) findViewById(R.id.listViewIceCream);
         iceCreams = new ArrayList<>();
+        mDatabase = FirebaseDatabase.getInstance().getReference();
         getArrayItems();
-        loadListView();
 
+        myAuth = FirebaseAuth.getInstance();
+        firebaseDatabase = FirebaseDatabase.getInstance();
+
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        user = firebaseAuth.getCurrentUser();
 
     }
 
@@ -59,16 +81,30 @@ public class activity_shopping_car extends AppCompatActivity {
 
     private void getArrayItems()
     {
-        iceCreams = new ArrayList<>();
-        iceCreams.add(new IceCream(getRecipíente("vazo"), "Vazo", "limon y fresa", 5));
-        iceCreams.add(new IceCream(getRecipíente("vazo"), "Vazo", "Sandilla, chicle y Pera", 9));
-        iceCreams.add(new IceCream(getRecipíente("cono"), "Cono", "limon y fresa", 5));
-        iceCreams.add(new IceCream(getRecipíente("plato"), "Plato", "limon y fresa", 5));
-        iceCreams.add(new IceCream(getRecipíente("vazo"), "Vazo", "limon y fresa", 5));
-        iceCreams.add(new IceCream(getRecipíente("vazo"), "Vazo", "Sandilla, chicle y Pera", 9));
-        iceCreams.add(new IceCream(getRecipíente("cono"), "Cono", "limon y fresa", 5));
-        iceCreams.add(new IceCream(getRecipíente("plato"), "Plato", "limon y fresa", 5));
+        if(true)
+        {
+            mDatabase.child("user").child(user.getUid()).child("shoppingCart").addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if(snapshot.exists()){
+                        for (DataSnapshot ds: snapshot.getChildren()){
+                            String container = ds.child("container").getValue().toString();
+                            String flavor = ds.child("flavor").getValue().toString();
+                            Double price = Double.parseDouble(ds.child("price").getValue().toString());
+                            iceCreams.add(new IceCream(getRecipíente(container),container,flavor, price));
+                        }
+                    }
+                    loadListView();
+                }
 
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    // Getting Post failed, log a message
+                    Log.e("Error", "loadPost:onCancelled", error.toException());
+                }
+            });
+        }
     }
 
     private double getTotalOrder()
@@ -88,7 +124,7 @@ public class activity_shopping_car extends AppCompatActivity {
             case "cono":
                     indice = R.drawable.ice_cream_cone;
                 break;
-            case "vazo":
+            case "vaso":
                 indice = R.drawable.ice_cream_cup;
                 break;
             case "plato":
