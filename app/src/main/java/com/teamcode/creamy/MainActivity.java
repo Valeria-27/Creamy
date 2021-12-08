@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.teamcode.creamy.Models.Container;
 import com.teamcode.creamy.Models.ContainerSize;
@@ -80,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
         Intent intent;
         switch (item.getItemId()) {
             case R.id.about:
@@ -94,7 +96,11 @@ public class MainActivity extends AppCompatActivity {
                 intent = new Intent(this, ice_cream_making.class);
                 startActivity(intent);
                 return true;
+            case R.id.ShoppingCar:
 
+                    intent = new Intent(this, activity_shopping_car.class);
+                    startActivity(intent);
+                    return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

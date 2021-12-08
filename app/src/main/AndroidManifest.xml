@@ -46,13 +46,13 @@
             android:name=".Login"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".activity_shopping_car"
             android:exported="true" />
         <activity
             android:name=".Activity_About"
             android:exported="false" />
         <activity
-            android:name=".activity_shopping_car"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

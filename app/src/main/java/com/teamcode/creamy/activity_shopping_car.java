@@ -47,13 +47,15 @@ public class activity_shopping_car extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.listViewIceCream);
         iceCreams = new ArrayList<>();
         mDatabase = FirebaseDatabase.getInstance().getReference();
-        getArrayItems();
+
 
         myAuth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
 
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         user = firebaseAuth.getCurrentUser();
+
+        getArrayItems();
 
     }
 
@@ -65,7 +67,6 @@ public class activity_shopping_car extends AppCompatActivity {
         shoppingCarAdapter.setCustomEventListener(new ShoppingCarAdapter.OnCustomEventListener() {
             @Override
             public void onEvent(IceCream iceCream) {
-                Toast.makeText(activity_shopping_car.this, "Sin funciona" + iceCream.getPrecio(), Toast.LENGTH_SHORT).show();
                 deleteArrayItem(iceCream);
                 loadListView();
             }
@@ -81,7 +82,7 @@ public class activity_shopping_car extends AppCompatActivity {
 
     private void getArrayItems()
     {
-        if(true)
+        if(user != null)
         {
             mDatabase.child("user").child(user.getUid()).child("shoppingCart").addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override

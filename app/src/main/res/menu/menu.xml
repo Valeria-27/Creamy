@@ -16,4 +16,9 @@
         android:title="Crea tu Helado"
         android:orderInCategory="3"
         app:showAsAction="never" />
+    <item android:id="@+id/ShoppingCar"
+        android:icon="@android:drawable/ic_menu_search"
+        android:title="Carrito de helados"
+        android:orderInCategory="4"
+        app:showAsAction="never" />
 </menu>
