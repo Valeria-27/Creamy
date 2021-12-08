@@ -2,15 +2,28 @@ package com.teamcode.creamy.Models;
 
 public class Container {
     private double price;
-    private ContainerType type;
-    private ContainerSize size;
+    private String type;
     private int imageId;
+    private String imageUrl;
 
-    public Container(double price, ContainerType type, ContainerSize size, int imageId) {
+    public Container(double price, String type, int imageId) {
         this.price = price;
         this.type = type;
-        this.size = size;
         this.imageId = imageId;
+    }
+
+    public Container(double price, String type, String imageUrl) {
+        this.price = price;
+        this.type = type;
+        this.imageUrl = imageUrl;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public double getPrice() {
@@ -21,20 +34,12 @@ public class Container {
         this.price = price;
     }
 
-    public ContainerType getType() {
+    public String getType() {
         return type;
     }
 
-    public void setType(ContainerType type) {
+    public void setType(String type) {
         this.type = type;
-    }
-
-    public ContainerSize getSize() {
-        return size;
-    }
-
-    public void setSize(ContainerSize size) {
-        this.size = size;
     }
 
     public int getImageId() {

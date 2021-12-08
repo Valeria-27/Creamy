@@ -1,9 +1,8 @@
-package com.teamcode.creamy;
+package com.teamcode.creamy.RecyclerViewAdapters;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
-import android.graphics.drawable.ShapeDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.teamcode.creamy.Models.Flavor;
+import com.teamcode.creamy.R;
 
 import java.util.ArrayList;
 import java.util.List;

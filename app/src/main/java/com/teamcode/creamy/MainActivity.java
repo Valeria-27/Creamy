@@ -11,11 +11,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
+import com.teamcode.creamy.Helpers.GridSpacingItemDecoration;
 import com.teamcode.creamy.Models.Container;
-import com.teamcode.creamy.Models.ContainerSize;
 import com.teamcode.creamy.Models.ContainerType;
 import com.teamcode.creamy.Models.Flavor;
+import com.teamcode.creamy.RecyclerViewAdapters.ContainerAdapter;
+import com.teamcode.creamy.RecyclerViewAdapters.FlavorAdapter;
 
 import java.util.ArrayList;
 
@@ -23,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<Container> containers;
     ArrayList<Flavor> flavors;
     RecyclerView rvContainers, rvFlavors;
+    Button btnCreateIceCream;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +36,9 @@ public class MainActivity extends AppCompatActivity {
 
         rvContainers = findViewById(R.id.rvContainers);
         rvFlavors = findViewById(R.id.rvFlavors);
+        btnCreateIceCream = findViewById(R.id.btnTestAddIceCream);
+
+        btnCreateIceCream.setOnClickListener(this::goToCreateIceCream);
 
         loadContainersData();
         loadFlavorsData();
@@ -41,8 +49,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void loadContainersData() {
         containers = new ArrayList<Container>();
-        containers.add(new Container(5.00, ContainerType.cone, ContainerSize.regular, R.drawable.ice_cream_cone));
-        containers.add(new Container(4.00, ContainerType.cup, ContainerSize.regular, R.drawable.ice_cream_cup));
+        containers.add(new Container(5.00, "Cono", R.drawable.ice_cream_cone));
+        containers.add(new Container(4.00, "Vaso", R.drawable.ice_cream_cup));
     }
 
     private void loadFlavorsData() {
@@ -52,8 +60,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loadContainersView() {
-        ContainerAdapter containerAdapter = new ContainerAdapter(containers);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+        ContainerAdapter containerAdapter = new ContainerAdapter(containers);
         layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         rvContainers.setLayoutManager(layoutManager);
         rvContainers.setItemAnimator(new DefaultItemAnimator());
@@ -70,6 +78,11 @@ public class MainActivity extends AppCompatActivity {
         rvFlavors.setLayoutManager(new GridLayoutManager(this, 3));
         rvFlavors.setItemAnimator(new DefaultItemAnimator());
         rvFlavors.setAdapter(flavorAdapter);
+    }
+
+    public void goToCreateIceCream(View view) {
+        Intent intent = new Intent(MainActivity.this, CreateIceCreamActivity.class);
+        startActivity(intent);
     }
 
     @Override

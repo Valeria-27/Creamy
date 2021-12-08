@@ -3,10 +3,24 @@ package com.teamcode.creamy.Models;
 public class Flavor {
     private String name;
     private int imageId;
+    private String imageUrl;
 
     public Flavor(String name, int imageId) {
         this.name = name;
         this.imageId = imageId;
+    }
+
+    public Flavor(String name, String imageUrl) {
+        this.name = name;
+        this.imageUrl = imageUrl;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public String getName() {

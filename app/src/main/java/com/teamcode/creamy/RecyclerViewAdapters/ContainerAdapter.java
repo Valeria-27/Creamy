@@ -1,4 +1,4 @@
-package com.teamcode.creamy;
+package com.teamcode.creamy.RecyclerViewAdapters;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.teamcode.creamy.Models.Container;
+import com.teamcode.creamy.R;
 
 import java.util.List;
 
