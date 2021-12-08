@@ -17,6 +17,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.Light">
         <activity
+            android:name=".ice_cream_making"
+            android:exported="true" />
+        <activity
             android:name=".DevelopersInfo"
             android:exported="true" />
         <!--
