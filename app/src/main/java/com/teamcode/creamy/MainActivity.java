@@ -15,15 +15,17 @@ import android.view.View;
 import android.widget.Button;
 
 import com.teamcode.creamy.Helpers.GridSpacingItemDecoration;
+import com.teamcode.creamy.Interfaces.IObserver;
 import com.teamcode.creamy.Models.Container;
-import com.teamcode.creamy.Models.ContainerType;
 import com.teamcode.creamy.Models.Flavor;
 import com.teamcode.creamy.RecyclerViewAdapters.ContainerAdapter;
 import com.teamcode.creamy.RecyclerViewAdapters.FlavorAdapter;
+import com.teamcode.creamy.Services.IceCreamService;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements IObserver {
+    IceCreamService iceCreamService;
     ArrayList<Container> containers;
     ArrayList<Flavor> flavors;
     RecyclerView rvContainers, rvFlavors;
@@ -34,17 +36,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        iceCreamService = new IceCreamService();
+        iceCreamService.suscribe(this);
+
         rvContainers = findViewById(R.id.rvContainers);
         rvFlavors = findViewById(R.id.rvFlavors);
         btnCreateIceCream = findViewById(R.id.btnTestAddIceCream);
 
         btnCreateIceCream.setOnClickListener(this::goToCreateIceCream);
 
-        loadContainersData();
-        loadFlavorsData();
-
-        loadContainersView();
-        loadFlavorsView();
+        iceCreamService.getFlavors();
+        iceCreamService.getContainers();
     }
 
     private void loadContainersData() {
@@ -105,6 +107,20 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
+    public void update(Object value) {
+        if(value instanceof java.util.ArrayList) {
+            if(((ArrayList<?>)value).get(0) instanceof Flavor) {
+                this.flavors = (ArrayList<Flavor>) value;
+                loadFlavorsView();
+            }
+            else if (((ArrayList<?>)value).get(0) instanceof Container) {
+                this.containers = (ArrayList<Container>) value;
+                loadContainersView();
+            }
         }
     }
 }

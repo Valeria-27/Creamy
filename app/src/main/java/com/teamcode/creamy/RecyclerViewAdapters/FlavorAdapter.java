@@ -1,6 +1,7 @@
 package com.teamcode.creamy.RecyclerViewAdapters;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.view.LayoutInflater;
@@ -14,11 +15,13 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.teamcode.creamy.Helpers.ImageFromUrl;
 import com.teamcode.creamy.Models.Flavor;
 import com.teamcode.creamy.R;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class FlavorAdapter extends RecyclerView.Adapter<FlavorAdapter.FlavorHolder>{
     Context context;
@@ -59,8 +62,12 @@ public class FlavorAdapter extends RecyclerView.Adapter<FlavorAdapter.FlavorHold
         Flavor flavor = flavors.get(position);
         holder.tvFlavor.setText(flavor.getName());
         GradientDrawable shapeDrawable = (GradientDrawable) holder.background;
-        shapeDrawable.setColor(ContextCompat.getColor(context, colors.get(position)));
-        holder.flavorImgView.setImageResource(flavor.getImageId());
+
+        int colorIndex = new Random().nextInt(colors.size());
+        shapeDrawable.setColor(ContextCompat.getColor(context, colors.get(colorIndex)));
+//        holder.flavorImgView.setImageBitmap(image);
+        new ImageFromUrl(holder.flavorImgView)
+                .execute(flavor.getImageUrl());
     }
 
     @Override

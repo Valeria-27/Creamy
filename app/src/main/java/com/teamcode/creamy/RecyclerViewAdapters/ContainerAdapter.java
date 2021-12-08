@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.teamcode.creamy.Helpers.ImageFromUrl;
 import com.teamcode.creamy.Models.Container;
 import com.teamcode.creamy.R;
 
@@ -43,7 +44,8 @@ public class ContainerAdapter extends RecyclerView.Adapter<ContainerAdapter.Cont
     @Override
     public void onBindViewHolder(@NonNull ContainerHolder holder, int position) {
         Container container = containers.get(position);
-        holder.containerImg.setImageResource(container.getImageId());
+//        holder.containerImg.setImageResource(container.getImageId());
+        new ImageFromUrl(holder.containerImg).execute(container.getImageUrl());
         holder.tvPrice.setText(String.format("Bs. %s", String.valueOf(container.getPrice())));
     }
 
