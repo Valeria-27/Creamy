@@ -60,11 +60,7 @@
             android:textColorHint="@color/black" />
 
         <EditText
-<<<<<<< HEAD
             android:id="@+id/etPasswordRegister"
-=======
-            android:id="@+id/etEmailRegister"
->>>>>>> 4b9264052a5e9a8d653d922c20a0cf40fa727ee7
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
@@ -84,11 +80,7 @@
             android:textColorHint="@color/black" />
 
         <EditText
-<<<<<<< HEAD
             android:id="@+id/etAddressRegister"
-=======
-            android:id="@+id/etAddress"
->>>>>>> 4b9264052a5e9a8d653d922c20a0cf40fa727ee7
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
