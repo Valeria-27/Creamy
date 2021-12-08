@@ -16,6 +16,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.Light">
+        <!--            android:name=".ice_cream_making"-->
         <activity
             android:name=".CreateIceCreamActivity"
             android:exported="true" />

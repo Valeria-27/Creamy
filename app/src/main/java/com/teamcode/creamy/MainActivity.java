@@ -49,18 +49,6 @@ public class MainActivity extends AppCompatActivity implements IObserver {
         iceCreamService.getContainers();
     }
 
-    private void loadContainersData() {
-        containers = new ArrayList<Container>();
-        containers.add(new Container(5.00, "Cono", R.drawable.ice_cream_cone));
-        containers.add(new Container(4.00, "Vaso", R.drawable.ice_cream_cup));
-    }
-
-    private void loadFlavorsData() {
-        flavors = new ArrayList<Flavor>();
-        flavors.add(new Flavor("Limón", R.drawable.flavor_lemon));
-        flavors.add(new Flavor("Oreo", R.drawable.flavor_oreo));
-    }
-
     private void loadContainersView() {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         ContainerAdapter containerAdapter = new ContainerAdapter(containers);
@@ -105,6 +93,11 @@ public class MainActivity extends AppCompatActivity implements IObserver {
                 intent = new Intent(this, DevelopersInfo.class);
                 startActivity(intent);
                 return true;
+            case R.id.IceCream:
+                intent = new Intent(this, ice_cream_making.class);
+                startActivity(intent);
+                return true;
+
             default:
                 return super.onOptionsItemSelected(item);
         }

@@ -16,6 +16,12 @@ public class IceCream {
         Price = price;
     }
 
+    public IceCream(String flavor, String container, double price) {
+        Flavor = flavor;
+        Container = container;
+        Price = price;
+    }
+
     public String getFlavor() {
         return Flavor;
     }

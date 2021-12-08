@@ -1,5 +1,7 @@
 package com.teamcode.creamy.Models;
 
+import androidx.annotation.NonNull;
+
 public class Flavor {
     private String name;
     private int imageId;
@@ -37,5 +39,11 @@ public class Flavor {
 
     public void setImageId(int imageId) {
         this.imageId = imageId;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return this.getName();
     }
 }

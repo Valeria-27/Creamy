@@ -2,14 +2,14 @@ package com.teamcode.creamy;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.teamcode.creamy.Interfaces.IObserver;
 import com.teamcode.creamy.Models.IceCream;
 import com.teamcode.creamy.Models.User;
@@ -20,19 +20,19 @@ import com.teamcode.creamy.Services.ShoppingCartService;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CreateIceCreamActivity extends AppCompatActivity implements IObserver {
+public class ice_cream_making extends AppCompatActivity implements IObserver {
     Spinner comboContainer, comboFirtsFlavour, comboSecondFlavour,comboThreeFlavour;
     ArrayList<Flavor> flavors;
     List<Container> containers;
     Button btnCreateIceCream;
     IceCream iceCream;
     User user;
-    ShoppingCartService cartService;
+    ShoppingCartService carService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_ice_cream);
+        setContentView(R.layout.activity_ice_cream_making);
 
         AuthService authService = new AuthService();
         authService.suscribe(this);
@@ -41,8 +41,6 @@ public class CreateIceCreamActivity extends AppCompatActivity implements IObserv
         IceCreamService iceCreamService = new IceCreamService();
         iceCreamService.suscribe(this);
 
-        cartService = new ShoppingCartService();
-
         flavors = new ArrayList<>();
         containers = new ArrayList<>();
 
@@ -50,9 +48,6 @@ public class CreateIceCreamActivity extends AppCompatActivity implements IObserv
         comboFirtsFlavour = findViewById(R.id.spinnerFirstFlavor);
         comboSecondFlavour = findViewById(R.id.spinnerSecondFlavor);
         comboThreeFlavour = findViewById(R.id.spinnerThreeFlavor);
-        btnCreateIceCream = findViewById(R.id.btnCreateIceCream);
-
-        btnCreateIceCream.setOnClickListener(this::onClickAddIceCreamToCart);
 
         iceCreamService.getContainers();
         iceCreamService.getFlavors();
@@ -60,18 +55,18 @@ public class CreateIceCreamActivity extends AppCompatActivity implements IObserv
 
     public void loadContainers(){
         ArrayAdapter<Container> arrayAdapter = new ArrayAdapter<>(
-                CreateIceCreamActivity.this,
-                android.R.layout.simple_dropdown_item_1line,
-                containers
+            ice_cream_making.this,
+            android.R.layout.simple_dropdown_item_1line,
+            containers
         );
         comboContainer.setAdapter(arrayAdapter);
     }
 
     public void loadFlavors(){
         ArrayAdapter<Flavor> arrayAdapter = new ArrayAdapter<>(
-                CreateIceCreamActivity.this,
-                android.R.layout.simple_spinner_dropdown_item,
-                flavors
+            ice_cream_making.this,
+            android.R.layout.simple_spinner_dropdown_item,
+            flavors
         );
 
         comboFirtsFlavour.setAdapter(arrayAdapter);
@@ -80,15 +75,14 @@ public class CreateIceCreamActivity extends AppCompatActivity implements IObserv
     }
 
     public void onClickAddIceCreamToCart(View view) {
-        iceCream = new IceCream();
-        iceCream.setContainer(comboContainer.getSelectedItem().toString());
-        iceCream.setFlavor("Sandía, Mandarina");
+        iceCream.setContainer("Vaso");
+        iceCream.setFlavor("Oreo, Limón, Maracuyá");
         iceCream.setPrice(21.0);
 
         user.getCarrito().add(iceCream);
-        cartService.addIceCreamToCar( user.getCarrito(), user.getId());
-        Toast.makeText(this, "Helado agregado al carrito!", Toast.LENGTH_SHORT).show();
+        carService.addIceCreamToCar( user.getCarrito(), user.getId());
     }
+
 
     @Override
     public void update(Object value) {
@@ -106,5 +100,4 @@ public class CreateIceCreamActivity extends AppCompatActivity implements IObserv
             this.user = (User) value;
         }
     }
-
 }

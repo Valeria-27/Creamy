@@ -1,5 +1,7 @@
 package com.teamcode.creamy.Models;
 
+import androidx.annotation.NonNull;
+
 public class Container {
     private double price;
     private String type;
@@ -48,5 +50,11 @@ public class Container {
 
     public void setImageId(int imageId) {
         this.imageId = imageId;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return this.getType();
     }
 }
