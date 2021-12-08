@@ -55,11 +55,6 @@ public class Register extends AppCompatActivity {
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-<<<<<<< HEAD
-                Intent intent = new Intent(Register.this, MainActivity.class);
-                startActivity(intent);
-
-=======
 
                 try {
                     myAuth = FirebaseAuth.getInstance();
@@ -163,7 +158,6 @@ public class Register extends AppCompatActivity {
 
                 /*Intent intent = new Intent(Register.this, MainActivity.class);
                 startActivity(intent);*/
->>>>>>> cd35a3e7510f8ad700c16029a9581325272f6cdc
             }
         });
     }
