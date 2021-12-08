@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity implements IObserver {
                 startActivity(intent);
                 return true;
             case R.id.IceCream:
-                intent = new Intent(this, ice_cream_making.class);
+                intent = new Intent(this, CreateIceCreamActivity.class);
                 startActivity(intent);
                 return true;
 
