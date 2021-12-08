@@ -3,18 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/CreamyAppMovil/Creamy/app/src/main/res/drawable-tvdpi/banner_bg.xml" value="0.1" />
-        <entry key="..\:/CreamyAppMovil/Creamy/app/src/main/res/drawable/btn_bg.xml" value="0.1" />
-        <entry key="..\:/CreamyAppMovil/Creamy/app/src/main/res/layout/activity_about.xml" value="0.2554347826086957" />
-        <entry key="..\:/CreamyAppMovil/Creamy/app/src/main/res/layout/activity_developers_info.xml" value="0.23233695652173914" />
-        <entry key="..\:/CreamyAppMovil/Creamy/app/src/main/res/layout/activity_ice_cream_making.xml" value="0.4" />
-        <entry key="..\:/CreamyAppMovil/Creamy/app/src/main/res/layout/activity_login.xml" value="0.2554347826086957" />
-        <entry key="..\:/CreamyAppMovil/Creamy/app/src/main/res/layout/activity_main.xml" value="0.2554347826086957" />
-        <entry key="..\:/CreamyAppMovil/Creamy/app/src/main/res/layout/activity_register.xml" value="0.2554347826086957" />
-        <entry key="..\:/CreamyAppMovil/Creamy/app/src/main/res/layout/activity_splash_screen.xml" value="0.17527173913043478" />
-        <entry key="..\:/CreamyAppMovil/Creamy/app/src/main/res/layout/container_list_item_layout.xml" value="0.17527173913043478" />
-        <entry key="..\:/CreamyAppMovil/Creamy/app/src/main/res/layout/flavor_list_item_layout.xml" value="0.17527173913043478" />
-        <entry key="..\:/CreamyAppMovil/Creamy/app/src/main/res/menu/menu.xml" value="0.14791666666666667" />
+        <entry key="..\:/DESCARGAS/Creamy (1)/Creamy/app/src/main/res/layout-land/activity_register.xml" value="0.10758377425044091" />
+        <entry key="..\:/DESCARGAS/Creamy (1)/Creamy/app/src/main/res/layout/activity_ice_cream_making.xml" value="0.4" />
+        <entry key="..\:/DESCARGAS/Creamy (1)/Creamy/app/src/main/res/layout/activity_register.xml" value="0.264" />
       </map>
     </option>
   </component>

@@ -30,7 +30,8 @@
         android:id="@+id/spinnerContainers"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:background="@android:color/darker_gray" />
 
     <TextView
@@ -46,7 +47,8 @@
         android:id="@+id/spinnerFirstFlavor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:background="@android:color/darker_gray" />
 
     <TextView
@@ -62,7 +64,8 @@
         android:id="@+id/spinnerSecondFlavor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:background="@android:color/darker_gray" />
 
     <TextView
@@ -78,7 +81,8 @@
         android:id="@+id/spinnerThreeFlavor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:background="@android:color/darker_gray" />
 
     <Button
