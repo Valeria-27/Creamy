@@ -22,6 +22,9 @@
             android:exported="false" />
 
         <activity
+            android:name=".ice_cream_making"
+            android:exported="true" />
+        <activity
             android:name=".DevelopersInfo"
             android:exported="true" />
         <!--

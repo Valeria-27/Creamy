@@ -21,7 +21,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <EditText
-            android:id="@+id/inputEmail"
+            android:id="@+id/etEmailR"
             android:layout_width="347dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
@@ -41,7 +41,7 @@
             android:textColorHint="#000000" />
 
         <EditText
-            android:id="@+id/inputPassword"
+            android:id="@+id/etNombreRegister"
             android:layout_width="347dp"
             android:layout_height="wrap_content"
             android:background="@drawable/input_bg2"
@@ -60,7 +60,7 @@
             android:textColorHint="@color/black" />
 
         <EditText
-            android:id="@+id/etEmailRegister"
+            android:id="@+id/etPasswordRegister"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
@@ -80,7 +80,7 @@
             android:textColorHint="@color/black" />
 
         <EditText
-            android:id="@+id/etAddress"
+            android:id="@+id/etAddressRegister"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
@@ -100,7 +100,7 @@
             android:textColorHint="@color/black" />
 
         <Button
-            android:id="@+id/btnLogin"
+            android:id="@+id/btnRegister"
             android:layout_width="347dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -128,7 +128,7 @@
                 android:textColor="@color/black" />
 
             <TextView
-                android:id="@+id/textViewSignUp"
+                android:id="@+id/etRegisterGo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
