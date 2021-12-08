@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.teamcode.creamy.Models.IceCream;
 
@@ -17,9 +18,9 @@ public class activity_shopping_car extends AppCompatActivity {
 
     private ListView listView;
     private ShoppingCarAdapter shoppingCarAdapter;
-
     private Button btnPedido;
     private TextView tvTotalOrder;
+    private ArrayList<IceCream> iceCreams;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,28 +28,53 @@ public class activity_shopping_car extends AppCompatActivity {
         tvTotalOrder = findViewById(R.id.tvTotalOrder);
         btnPedido = findViewById(R.id.btnPedido);
         listView = (ListView) findViewById(R.id.listViewIceCream);
+        iceCreams = new ArrayList<>();
+        getArrayItems();
+        loadListView();
 
-        shoppingCarAdapter = new ShoppingCarAdapter(activity_shopping_car.this, getArrayItems());
-        listView.setAdapter(shoppingCarAdapter);
 
-        tvTotalOrder.setText("Total Bs "+getTotalOrder());
     }
 
-    private ArrayList<IceCream> getArrayItems()
+    private void loadListView()
     {
-        ArrayList<IceCream> iceCreams = new ArrayList<>();
+        shoppingCarAdapter = new ShoppingCarAdapter(activity_shopping_car.this, iceCreams);
+        listView.setAdapter(shoppingCarAdapter);
+        tvTotalOrder.setText("Total Bs "+getTotalOrder());
+        shoppingCarAdapter.setCustomEventListener(new ShoppingCarAdapter.OnCustomEventListener() {
+            @Override
+            public void onEvent(IceCream iceCream) {
+                Toast.makeText(activity_shopping_car.this, "Sin funciona" + iceCream.getPrecio(), Toast.LENGTH_SHORT).show();
+                deleteArrayItem(iceCream);
+                loadListView();
+            }
+        });
+    }
+
+    private void deleteArrayItem(IceCream iceCream)
+    {
+        iceCreams.remove(iceCream);
+    }
+
+
+
+    private void getArrayItems()
+    {
+        iceCreams = new ArrayList<>();
         iceCreams.add(new IceCream(getRecipíente("vazo"), "Vazo", "limon y fresa", 5));
         iceCreams.add(new IceCream(getRecipíente("vazo"), "Vazo", "Sandilla, chicle y Pera", 9));
         iceCreams.add(new IceCream(getRecipíente("cono"), "Cono", "limon y fresa", 5));
         iceCreams.add(new IceCream(getRecipíente("plato"), "Plato", "limon y fresa", 5));
-        return iceCreams;
+        iceCreams.add(new IceCream(getRecipíente("vazo"), "Vazo", "limon y fresa", 5));
+        iceCreams.add(new IceCream(getRecipíente("vazo"), "Vazo", "Sandilla, chicle y Pera", 9));
+        iceCreams.add(new IceCream(getRecipíente("cono"), "Cono", "limon y fresa", 5));
+        iceCreams.add(new IceCream(getRecipíente("plato"), "Plato", "limon y fresa", 5));
+
     }
 
     private double getTotalOrder()
     {
-        ArrayList<IceCream> creamArrayList = getArrayItems();
         double total = 0;
-        for (IceCream iceCream: creamArrayList) {
+        for (IceCream iceCream: iceCreams) {
             total += iceCream.getPrecio();
         }
         return total;

@@ -3,6 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Archivos Andy/UNIVERSIDAD/4TO-SEMESTRE/PROGRAMACION MOVIL II/PROYECTO FINAL/proyecto/Creamy/app/src/main/res/drawable/btn_bg.xml" value="0.14322916666666666" />
+        <entry key="..\:/Archivos Andy/UNIVERSIDAD/4TO-SEMESTRE/PROGRAMACION MOVIL II/PROYECTO FINAL/proyecto/Creamy/app/src/main/res/drawable/btn_delete.xml" value="0.14322916666666666" />
+        <entry key="..\:/Archivos Andy/UNIVERSIDAD/4TO-SEMESTRE/PROGRAMACION MOVIL II/PROYECTO FINAL/proyecto/Creamy/app/src/main/res/layout/activity_shopping_car.xml" value="0.12708333333333333" />
+        <entry key="..\:/Archivos Andy/UNIVERSIDAD/4TO-SEMESTRE/PROGRAMACION MOVIL II/PROYECTO FINAL/proyecto/Creamy/app/src/main/res/layout/flavor_list_item_layout.xml" value="0.12708333333333333" />
+        <entry key="..\:/Archivos Andy/UNIVERSIDAD/4TO-SEMESTRE/PROGRAMACION MOVIL II/PROYECTO FINAL/proyecto/Creamy/app/src/main/res/layout/shopping_car_item.xml" value="0.4" />
         <entry key="app/src/main/res/drawable-tvdpi/banner_bg.xml" value="0.378125" />
         <entry key="app/src/main/res/drawable-v24/input_bg2.xml" value="0.378125" />
         <entry key="app/src/main/res/drawable-v24/layout_bg.xml" value="0.378125" />
