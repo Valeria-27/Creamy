@@ -29,7 +29,6 @@ public class MainActivity extends AppCompatActivity implements IObserver {
     ArrayList<Container> containers;
     ArrayList<Flavor> flavors;
     RecyclerView rvContainers, rvFlavors;
-    Button btnCreateIceCream;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,9 +40,7 @@ public class MainActivity extends AppCompatActivity implements IObserver {
 
         rvContainers = findViewById(R.id.rvContainers);
         rvFlavors = findViewById(R.id.rvFlavors);
-        btnCreateIceCream = findViewById(R.id.btnTestAddIceCream);
 
-        btnCreateIceCream.setOnClickListener(this::goToCreateIceCream);
 
         iceCreamService.getFlavors();
         iceCreamService.getContainers();
@@ -70,11 +67,6 @@ public class MainActivity extends AppCompatActivity implements IObserver {
         rvFlavors.setAdapter(flavorAdapter);
     }
 
-    public void goToCreateIceCream(View view) {
-        Intent intent = new Intent(MainActivity.this, CreateIceCreamActivity.class);
-        startActivity(intent);
-    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
@@ -83,6 +75,7 @@ public class MainActivity extends AppCompatActivity implements IObserver {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
         Intent intent;
         switch (item.getItemId()) {
             case R.id.about:
@@ -97,7 +90,10 @@ public class MainActivity extends AppCompatActivity implements IObserver {
                 intent = new Intent(this, CreateIceCreamActivity.class);
                 startActivity(intent);
                 return true;
-
+            case R.id.ShoppingCar:
+                    intent = new Intent(this, activity_shopping_car.class);
+                    startActivity(intent);
+                    return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

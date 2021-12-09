@@ -1,60 +1,70 @@
 package com.teamcode.creamy.Models;
 
 public class IceCream {
-    private String IdIceCream;
-    private String Flavor;
-    private String Container;
-    private double Price;
+    private String idIceCream;
+    private String imageUrl;
+    private String flavor;
+    private String container;
+    private double price;
 
     public IceCream() {
     }
 
-    public IceCream(String idIceCream, String flavor, String container, double price) {
-        IdIceCream = idIceCream;
-        Flavor = flavor;
-        Container = container;
-        Price = price;
-    }
-
     public IceCream(String flavor, String container, double price) {
-        Flavor = flavor;
-        Container = container;
-        Price = price;
+        this.flavor = flavor;
+        this.container = container;
+        this.price = price;
     }
 
-    public String getFlavor() {
-        return Flavor;
-    }
-
-    public void setFlavor(String flavor) {
-        Flavor = flavor;
-    }
-
-    public String getContainer() {
-        return Container;
-    }
-
-    public void setContainer(String container) {
-        Container = container;
-    }
-
-    public double getPrice() {
-        return Price;
-    }
-
-    public void setPrice(double price) {
-        Price = price;
+    public IceCream(String imageUrl, String container, String flavor, double price) {
+        this.imageUrl = imageUrl;
+        this.flavor = flavor;
+        this.container = container;
+        this.price = price;
     }
 
     public IceCream(String idIceCream) {
-        IdIceCream = idIceCream;
+        this.idIceCream = idIceCream;
+    }
+
+    public String getFlavor() {
+        return flavor;
+    }
+
+    public void setFlavor(String flavor) {
+        this.flavor = flavor;
+    }
+
+    public String getContainer() {
+        return container;
+    }
+
+    public void setContainer(String container) {
+        this.container = container;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 
     public String getIdIceCream() {
-        return IdIceCream;
+        return idIceCream;
     }
 
     public void setIdIceCream(String idIceCream) {
-        IdIceCream = idIceCream;
+        this.idIceCream = idIceCream;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }
+
