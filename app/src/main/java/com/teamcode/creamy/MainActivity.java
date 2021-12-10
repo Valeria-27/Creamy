@@ -11,16 +11,21 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
+import android.view.View;
+import android.widget.Button;
 
+import com.teamcode.creamy.Helpers.GridSpacingItemDecoration;
+import com.teamcode.creamy.Interfaces.IObserver;
 import com.teamcode.creamy.Models.Container;
-import com.teamcode.creamy.Models.ContainerSize;
-import com.teamcode.creamy.Models.ContainerType;
 import com.teamcode.creamy.Models.Flavor;
+import com.teamcode.creamy.RecyclerViewAdapters.ContainerAdapter;
+import com.teamcode.creamy.RecyclerViewAdapters.FlavorAdapter;
+import com.teamcode.creamy.Services.IceCreamService;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements IObserver {
+    IceCreamService iceCreamService;
     ArrayList<Container> containers;
     ArrayList<Flavor> flavors;
     RecyclerView rvContainers, rvFlavors;
@@ -30,31 +35,20 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        iceCreamService = new IceCreamService();
+        iceCreamService.suscribe(this);
+
         rvContainers = findViewById(R.id.rvContainers);
         rvFlavors = findViewById(R.id.rvFlavors);
 
-        loadContainersData();
-        loadFlavorsData();
 
-        loadContainersView();
-        loadFlavorsView();
-    }
-
-    private void loadContainersData() {
-        containers = new ArrayList<Container>();
-        containers.add(new Container(5.00, ContainerType.cone, ContainerSize.regular, R.drawable.ice_cream_cone));
-        containers.add(new Container(4.00, ContainerType.cup, ContainerSize.regular, R.drawable.ice_cream_cup));
-    }
-
-    private void loadFlavorsData() {
-        flavors = new ArrayList<Flavor>();
-        flavors.add(new Flavor("Limón", R.drawable.flavor_lemon));
-        flavors.add(new Flavor("Oreo", R.drawable.flavor_oreo));
+        iceCreamService.getFlavors();
+        iceCreamService.getContainers();
     }
 
     private void loadContainersView() {
-        ContainerAdapter containerAdapter = new ContainerAdapter(containers);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+        ContainerAdapter containerAdapter = new ContainerAdapter(containers);
         layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         rvContainers.setLayoutManager(layoutManager);
         rvContainers.setItemAnimator(new DefaultItemAnimator());
@@ -93,16 +87,29 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
                 return true;
             case R.id.IceCream:
-                intent = new Intent(this, ice_cream_making.class);
+                intent = new Intent(this, CreateIceCreamActivity.class);
                 startActivity(intent);
                 return true;
             case R.id.ShoppingCar:
-
                     intent = new Intent(this, activity_shopping_car.class);
                     startActivity(intent);
                     return true;
             default:
                 return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
+    public void update(Object value) {
+        if(value instanceof java.util.ArrayList) {
+            if(((ArrayList<?>)value).get(0) instanceof Flavor) {
+                this.flavors = (ArrayList<Flavor>) value;
+                loadFlavorsView();
+            }
+            else if (((ArrayList<?>)value).get(0) instanceof Container) {
+                this.containers = (ArrayList<Container>) value;
+                loadContainersView();
+            }
         }
     }
 }

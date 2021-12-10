@@ -10,7 +10,7 @@
         android:layout_width="116dp"
         android:layout_height="116dp"
         android:background="@drawable/border"
-        app:srcCompat="@drawable/flavor_lemon" />
+        app:srcCompat="@drawable/empty_image" />
 
     <TextView
         android:id="@+id/tvFlavor"

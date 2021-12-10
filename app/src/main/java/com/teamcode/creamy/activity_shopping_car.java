@@ -3,15 +3,16 @@ package com.teamcode.creamy;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.ArrayAdapter;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -20,10 +21,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.teamcode.creamy.Models.IceCream;
+import com.teamcode.creamy.RecyclerViewAdapters.ShoppingCarAdapter;
 
-import java.lang.annotation.Documented;
 import java.util.ArrayList;
-import java.util.Locale;
+import java.util.HashMap;
+import java.util.Map;
 
 public class activity_shopping_car extends AppCompatActivity {
 
@@ -56,6 +58,13 @@ public class activity_shopping_car extends AppCompatActivity {
         user = firebaseAuth.getCurrentUser();
 
         getArrayItems();
+
+        btnPedido.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                tramitOrder();
+            }
+        });
 
     }
 
@@ -92,7 +101,7 @@ public class activity_shopping_car extends AppCompatActivity {
                             String container = ds.child("container").getValue().toString();
                             String flavor = ds.child("flavor").getValue().toString();
                             Double price = Double.parseDouble(ds.child("price").getValue().toString());
-                            iceCreams.add(new IceCream(getRecipíente(container),container,flavor, price));
+                            iceCreams.add(new IceCream(getContainerUrl(container),container,flavor, price));
                         }
                         Log.e("Firebase", "Hay cambios");
                     }
@@ -113,26 +122,52 @@ public class activity_shopping_car extends AppCompatActivity {
     {
         double total = 0;
         for (IceCream iceCream: iceCreams) {
-            total += iceCream.getPrecio();
+            total += iceCream.getPrice();
         }
         return total;
     }
 
-    public int getRecipíente(String typeRecipiente)
+    public String getContainerUrl(String containerType)
     {
-        int indice = 0;
-        switch (typeRecipiente.toLowerCase(Locale.ROOT))
+        String baseUrl = "https://firebasestorage.googleapis.com/v0/b/creamy-1186d.appspot.com/o/containers%2F";
+        Map<String, String> urlBuilder = new HashMap<>();
+        urlBuilder.put("cono", "ice-cream-cone.jpeg?alt=media&token=0f3a7af0-c42a-47da-84bd-1a6064fa7a25");
+        urlBuilder.put("vaso", "ice-cream-cup.jpeg?alt=media&token=00b8936e-2421-449d-af20-427aee7eed07");
+        urlBuilder.put("galleta", "ice-cream-basket.jpg?alt=media&token=684a2f4e-ab11-4cf8-a8b7-979f6f4077ea");
+
+        return baseUrl + urlBuilder.get(containerType.toLowerCase());
+    }
+
+    public void tramitOrder()
+    {
+        if(iceCreams.size() > 0)
         {
-            case "cono":
-                    indice = R.drawable.ice_cream_cone;
-                break;
-            case "vaso":
-                indice = R.drawable.ice_cream_cup;
-                break;
-            case "plato":
-                indice = R.drawable.bgicecream;
-                break;
+            String key =  firebaseDatabase.getReference().push().getKey();
+            FirebaseDatabase.getInstance().getReference("orders")
+                    .child(key).child("order")
+                    .setValue(iceCreams). addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if (task.isSuccessful()) {
+                        Toast.makeText(activity_shopping_car.this, "Registro exitoso", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(activity_shopping_car.this, "Registro fallido", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+
+            FirebaseDatabase.getInstance().getReference("orders")
+                    .child(key).child("idUser")
+                    .setValue(user.getUid()
+                    );
+
+            FirebaseDatabase.getInstance().getReference("user")
+                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("shoppingCart")
+                    .removeValue(
+                    );
+            finish();
+
         }
-        return  indice;
+
     }
 }

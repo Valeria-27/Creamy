@@ -28,7 +28,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:scaleType="centerCrop"
-                app:srcCompat="@drawable/bgice2" />
+                app:srcCompat="@drawable/empty_image" />
         </androidx.cardview.widget.CardView>
 
     </LinearLayout>
