@@ -5,10 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -55,6 +59,13 @@ public class activity_shopping_car extends AppCompatActivity {
 
         getArrayItems();
 
+        btnPedido.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                tramitOrder();
+            }
+        });
+
     }
 
     private void loadListView()
@@ -92,6 +103,7 @@ public class activity_shopping_car extends AppCompatActivity {
                             Double price = Double.parseDouble(ds.child("price").getValue().toString());
                             iceCreams.add(new IceCream(getContainerUrl(container),container,flavor, price));
                         }
+                        Log.e("Firebase", "Hay cambios");
                     }
                     loadListView();
                 }
@@ -124,5 +136,38 @@ public class activity_shopping_car extends AppCompatActivity {
         urlBuilder.put("galleta", "ice-cream-basket.jpg?alt=media&token=684a2f4e-ab11-4cf8-a8b7-979f6f4077ea");
 
         return baseUrl + urlBuilder.get(containerType.toLowerCase());
+    }
+
+    public void tramitOrder()
+    {
+        if(iceCreams.size() > 0)
+        {
+            String key =  firebaseDatabase.getReference().push().getKey();
+            FirebaseDatabase.getInstance().getReference("orders")
+                    .child(key).child("order")
+                    .setValue(iceCreams). addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if (task.isSuccessful()) {
+                        Toast.makeText(activity_shopping_car.this, "Registro exitoso", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(activity_shopping_car.this, "Registro fallido", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+
+            FirebaseDatabase.getInstance().getReference("orders")
+                    .child(key).child("idUser")
+                    .setValue(user.getUid()
+                    );
+
+            FirebaseDatabase.getInstance().getReference("user")
+                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("shoppingCart")
+                    .removeValue(
+                    );
+            finish();
+
+        }
+
     }
 }
