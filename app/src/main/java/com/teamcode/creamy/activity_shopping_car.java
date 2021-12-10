@@ -94,6 +94,7 @@ public class activity_shopping_car extends AppCompatActivity {
                             Double price = Double.parseDouble(ds.child("price").getValue().toString());
                             iceCreams.add(new IceCream(getRecipíente(container),container,flavor, price));
                         }
+                        Log.e("Firebase", "Hay cambios");
                     }
                     loadListView();
                 }
