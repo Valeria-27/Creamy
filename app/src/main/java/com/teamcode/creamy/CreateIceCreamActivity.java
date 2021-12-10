@@ -16,6 +16,7 @@ import com.teamcode.creamy.Models.User;
 import com.teamcode.creamy.Services.AuthService;
 import com.teamcode.creamy.Services.IceCreamService;
 import com.teamcode.creamy.Services.ShoppingCartService;
+import com.teamcode.creamy.Models.Container;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -81,10 +82,33 @@ public class CreateIceCreamActivity extends AppCompatActivity implements IObserv
 
     public void onClickAddIceCreamToCart(View view) {
         iceCream = new IceCream();
+        Container c = (Container) comboContainer.getSelectedItem();
+        double priceContainer = 0;
+        priceContainer = c.getPrice();
         iceCream.setContainer(comboContainer.getSelectedItem().toString());
-        iceCream.setFlavor("Sandía, Mandarina");
-        iceCream.setPrice(21.0);
+        double h1,h2,h3;
+        if (comboFirtsFlavour.getSelectedItem().toString().equals("Ningún sabor")) {
+            h1 = 0;
+        } else {
+            h1 = 3.5;
+        }
 
+        if (comboSecondFlavour.getSelectedItem().toString().equals("Ningún sabor")) {
+            h2 = 0;
+        } else {
+            h2 = 3.5;
+        }
+
+        if (comboThreeFlavour.getSelectedItem().toString().equals("Ningún sabor")) {
+            h3 = 0;
+        } else {
+            h3 = 3.5;
+        }
+
+        double t;
+        t = h1 + h2 + h3 + priceContainer;
+        iceCream.setFlavor(comboFirtsFlavour.getSelectedItem().toString() + ", "+ comboSecondFlavour.getSelectedItem().toString() + ", " + comboThreeFlavour.getSelectedItem().toString());
+        iceCream.setPrice(t);
         user.getCarrito().add(iceCream);
         cartService.addIceCreamToCar( user.getCarrito(), user.getId());
         Toast.makeText(this, "Helado agregado al carrito!", Toast.LENGTH_SHORT).show();
